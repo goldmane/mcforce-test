@@ -8,12 +8,14 @@
     <script type="text/javascript">
         var app = angular.module('app', []);
         var ctrl = app.controller('ctrlr', ['$rootScope', '$scope', function ($rootScope, $scope) {
-            console.log('Controller OK', $rootScope.getHeight());
 
             //a.getHeight=function(){return 0===i&&(i=Sfdc.canvas.client.size().heights.pageHeight),i}
             $rootScope.getHeight = function () {
-                return 0 === i && (i = Sfdc.canvas.client.size().heights.pageHeight);//, i
-            }
+                if(Sfdc != undefined)
+                    return (Sfdc.canvas.client.size().heights.pageHeight);
+            };
+
+            console.log('Controller OK', $rootScope.getHeight());
         }]);
     </script>
 </head>
